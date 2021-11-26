@@ -8,7 +8,12 @@ class UserController {
   async index({ request, response, view }) {
     const user = await User.query().fetch();
 
-    return user;
+    if (user) {
+      return user;
+    }
+    else {
+      return response.status(404).json({ error: "nenhum dado encontrado" });
+    }
   }
 
   /* Criar dados */
@@ -18,7 +23,12 @@ class UserController {
 
     const user = await User.create(data);
 
-    return user;
+    if (user) {
+      return user;
+    }
+    else {
+      return response.status(200).json({ error: "não foi possível cadastrar" });
+    }
   }
 
   /* Mostrar Item especifico */
@@ -50,7 +60,17 @@ class UserController {
   }
 
   async destroy({ params, request, response }) {
-    return 'Excluir dados'
+    const where = 'id'; // qual coluna quer editar (usar token de segurança antes ou secure_id)
+    let data = request.all();
+
+    await User.query().where(where, params.id).delete(data);
+
+    if (user) {
+      return response.status(200).json({ message: "usuário deletado" })
+    }
+    else {
+      return response.status(404).json({ error: "não foi possível deletar" });
+    }
   }
 }
 
