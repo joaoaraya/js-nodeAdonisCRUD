@@ -59,8 +59,9 @@ class UserController {
     }
   }
 
+  /* Deletar dados */
   async destroy({ params, request, response }) {
-    const where = 'id'; // qual coluna quer editar (usar token de segurança antes ou secure_id)
+    const where = 'id'; // de qual coluna quer excluir (usar token de segurança antes ou secure_id)
     let data = request.all();
 
     await User.query().where(where, params.id).delete(data);
