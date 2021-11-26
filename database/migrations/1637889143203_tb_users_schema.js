@@ -1,10 +1,10 @@
 'use strict'
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
-const Schema = use('Schema')
+const Schema = use('Schema');
 
 class TbUsersSchema extends Schema {
-  up () {
+  up() {
     this.create('tb_users', (table) => {
       table.increments().unique();
       table.uuid("secure_id");
@@ -15,7 +15,7 @@ class TbUsersSchema extends Schema {
     })
   }
 
-  down () {
+  down() {
     this.drop('tb_users')
   }
 }

@@ -19,3 +19,9 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.post("users", "UserController.store"); // Listar todos dados
+Route.get("users", "UserController.index"); //Criar dados
+Route.get("users/:id", "UserController.show"); // Listar item
+Route.put("users/:id", "UserController.update"); //Alterar dados
+Route.delete("users/:id", "UserController.destroy"); //Excluir dados
